@@ -3,29 +3,24 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<style>
-	*{margin: 0px;padding: 0px;}
-	ul{padding: 0px;}
-	li{list-style: none;}
-	header{width: 100%;height: 662px;background: url(./images/pattern1.png);border-top:1px solid #fff;}
-	.pic {width: 150px;height: 80px;margin: 150px auto;}
-	.pic img{width: 150px;border-radius:50%;}
-	h1{text-align: center;font:50px '微软雅黑';text-shadow:10px 10px 10px rgba(0,0,0,0.5);}
-	/*nav{width:200px;background: pink;position: fixed;right:0px;top:300px;text-align: center;}*/
-	</style>
+	<link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
 	<header id = 'header'>
 		<div class = 'pic'><img src="./images/photo.jpg" alt="头像"></div>
-		<h1>Hi,我是宋文进</h1>
+		<div class = 'intr'>
+			<h1>Hi,我是宋文进</h1>
+			<hr/>
+			<h2>一个很爱前端的人</h2>
+			<p>XP一天不死，IE6一天不灭</p>
+			<address>1468864467@qq.com</address>
+		</div>
+		<span class = 'mouse'><img src="./images/mouse1.png" alt=""></span>
 	</header>
-<!-- 	<nav>
-		<ul>
-			<li>关于我</li>
-			<li>skill</li>
-			<li>blog</li>
-			<li>联系我</li>
-		</ul>
-	</nav> -->
 </body>
+<script src = 'http://code.jquery.com/jquery-latest.js'></script>
+<script>
+	$('.intr').find('h1').eq(0).css({'transform':'translate(0px)','opacity':1});
+	$('.intr').find('h2').eq(0).css({'transform':'translate(0px)','opacity':1});
+</script>
 </html>
