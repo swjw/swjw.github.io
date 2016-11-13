@@ -17,10 +17,15 @@
 		</div>
 		<span class = 'mouse'><img src="./images/mouse1.png" alt=""></span>
 	</header>
+	<div id = 'aboutme'>
+		
+	</div>
 </body>
-<script src = 'http://code.jquery.com/jquery-latest.js'></script>
+<script src = 'https://code.jquery.com/jquery-3.1.1.min.js'></script>
 <script>
-	$('.intr').find('h1').eq(0).css({'transform':'translate(0px)','opacity':1});
-	$('.intr').find('h2').eq(0).css({'transform':'translate(0px)','opacity':1});
+	window.onload = function(){
+		$('.intr').find('h1').eq(0).css({'transform':'translate(0px)','opacity':1});
+		$('.intr').find('h2').eq(0).css({'transform':'translate(0px)','opacity':1});
+	}
 </script>
 </html>
