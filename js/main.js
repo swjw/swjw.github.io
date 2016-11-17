@@ -4,12 +4,15 @@
 		//初始化；
 		myCV.inti = function (){
 			var w = $(window).width();
+			var h = $(window).height();
+			$('#dbox').height(h);
 			$('#dbox .wrap').css('-webkit-transform-origin', 'center center '+w/2+'px');
 			window.onresize = function (){
 			 w = $(window).width();
 			$('#dbox .wrap').css('-webkit-transform-origin', 'center center '+w/2+'px');
 			}
 		}
+		myCV.inti();
 		//事件；
 		myCV.events = function (){
 			$('#nav').find('li').each(function(i,elem){
@@ -30,7 +33,18 @@
 				}else{
 					myCV.scen2r();
 				}
-
+				if(i == 2)
+				{
+					myCV.scen3txt();
+				}else{
+					myCV.scen3txtr();
+				}
+				if(i ==3 )
+				{
+					myCV.scen4();
+				}else{
+					myCV.scen4r();
+				}
 				})
 			})
 		}
@@ -69,10 +83,101 @@
 					$(elem).removeClass('open');
 				})
 		}
+		//第三屏
+	myCV.scen3 = function (){
+		var oPrevDiv = document.getElementsByClassName('prev_div')[0];
+		var oNextDiv = document.getElementsByClassName('next_div')[0];
+		var automatic = document.getElementById('automatic');
+		var aLi = automatic.getElementsByTagName('li');
+	
+		var arr = [];
+	
+		for(var i=0;i<aLi.length;i++){
+			var oImg = aLi[i].getElementsByTagName('img')[0];
+			
+			arr.push( [ parseInt(getStyle(aLi[i],'left')),parseInt(getStyle(aLi[i],'top')),getStyle(aLi[i],'opacity')*100,getStyle(aLi[i],'zIndex') , oImg.width ] );
+			
+		}
+		oPrevDiv.onclick = function(){  //左
+			arr.push(arr[0]);
+			arr.shift();
+			
+			for(var i=0;i<aLi.length;i++){
+				
+				var oImg = aLi[i].getElementsByTagName('img')[0];
+				
+				aLi[i].style.zIndex = arr[i][3];
+				
+				startMove(aLi[i],{left : arr[i][0] , top : arr[i][1] , opacity : arr[i][2] });
+				
+				startMove( oImg,{ width : arr[i][4] } );
+				
+			}
+			
+		};
+	
+		oNextDiv.onclick = function(){  //右
+			arr.unshift(arr[arr.length-1]);
+			arr.pop();
+			
+			for(var i=0;i<aLi.length;i++){
+				
+				var oImg = aLi[i].getElementsByTagName('img')[0];
+				
+				aLi[i].style.zIndex = arr[i][3];
+				
+				startMove(aLi[i],{left : arr[i][0] , top : arr[i][1] , opacity : arr[i][2] });
+				
+				startMove( oImg,{ width : arr[i][4] } );
+				
+			}
+		};
+		function getStyle(obj,attr){
+			if(obj.currentStyle){
+				return obj.currentStyle[attr];
+			}
+			else{
+				return getComputedStyle(obj,false)[attr];
+			}
+		}
+	}
+	// 第三屏下的文字效果；
+	myCV.scen3txt = function (){
+		$('.skill').find('p').addClass('current');
+	}
+	myCV.scen3txtr = function (){
+		$('.skill').find('p').removeClass('current');
+	}
+
+	// 第四屏动画；
+	myCV.scen4 = function (){
+		$('.box4').addClass('current');
+		var i = 0;
+		var oTimer = null;
+		setTimeout(function(){
+		oTimer = setInterval(drop,200)
+		},1000);
+		function drop(){
+		$('.box4').find('p').eq(i).addClass('active');
+		i++;
+		if(i==3)
+		{
+			clearInterval(oTimer);
+		}
+		}
+	}
+	// 第四屏动画归位；
+	myCV.scen4r = function (){
+		$('.box4').removeClass('current');
+		for(var i = 0;i<3;i++){
+			$('.box4').find('p').eq(i).removeClass('active');
+		}
+	}
 
 		myCV.scen1();
-		myCV.inti();
+		myCV.scen3();
 		myCV.events();
+
 
 
 		//全局切换动画对象；
@@ -99,6 +204,4 @@
 				$('#dbox .wrap').css({'transition':'none','-webkit-transform':'rotateY(0deg)'});
 			}
 		}
-
-
 	}
