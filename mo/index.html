@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width = device-width,user-scalable = no,initial-scale = 1,minimum-scale = 1,maximum-scale = 1">
+	<link rel="stylesheet" href="./css/style.css">
+	<script>
+		var html = document.getElementsByTagName('html')[0];
+		html.style.fontSize = document.documentElement.clientWidth/16 + 'px';
+	</script>
+</head>
+<body>
+	<article id = 'page'>
+		<header class = 'header'>
+			<a href = '#'>删除</a>
+			相机相册
+			<a href = '#'>选择</a>
+		</header>
+		<section id="wrap">
+			<ul class = 'wrap'>
+			</ul>	
+		</section>
+		<footer class="footer">
+			<a href="#">相机相册</a><a href="#">所有相册</a>
+		</footer>
+		<div id = 'del'>
+			<div class = 'top'></div>
+			<div class = 'bottom'></div>
+		</div>
+	</article>
+</body>
+<script>
+	var oPage = document.getElementById('page');
+	var oH = document.querySelector('.header');
+	var oBt = oH.getElementsByTagName('a');
+	var oWrap = oPage.querySelector('.wrap');
+	var aImg = ['./video/1.jpg','./video/2.jpg','./video/3.jpg','./video/4.jpg','./video/5.jpg','./video/6.jpg','./video/7.jpg','./video/8.jpg','./video/9.jpg','./video/10.jpg','./video/11.jpg','./video/12.jpg','./video/13.jpg','./video/14.jpg','./video/15.jpg','./video/16.jpg'];
+	var str = '';
+	for(var i = 0;i<aImg.length;i++)
+	{
+		str +='<li style = "background:url('+aImg[i]+') no-repeat; background-size:cover"></li>'
+	}
+	oWrap.innerHTML = str;
+	var oLi = oWrap.querySelectorAll('li');
+	// 定位函数;
+	function pos(){
+			oLi = oWrap.querySelectorAll('li');
+			setTimeout(function(){
+					for(var i = 0;i<oLi.length;i++)
+				{
+					oLi[i].style.left = (i%3)*5.33+'rem';
+					oLi[i].style.top = Math.floor(i/3)*5.33+'rem';
+				}
+			},300);
+	}
+	pos();
+	//选择控件;
+	oBt[1].addEventListener('touchend',tab,false);
+	var onoff = true;
+	function tab(){
+			if(onoff)
+			{
+				oBt[1].innerHTML = '取消';
+				for(var i = 0;i<oLi.length;i++)
+				{
+					oLi[i].index = i;
+					oLi[i].addEventListener('touchend',chose,false);
+				}
+				onoff = !onoff;
+			}else{
+				oBt[1].innerHTML = '选择';
+				oBt[0].style.display = 'none';
+				for(var i = 0;i<oLi.length;i++)
+				{
+					oLi[i].style.opacity = 1;
+					oLi[i].removeEventListener('touchend',chose,false);
+				}
+				onoff = !onoff;
+			}
+	}
+	var arrChose = [];
+	function chose(){
+		oBt[0].style.display = 'block';
+		this.style.opacity = 0.1;
+		arrChose.push(this.index);
+	}
+	//删除控件;
+	oBt[0].addEventListener('touchend',del,false);
+	function del(){
+			arrChose.sort(function(a,b){
+				return a-b;
+			})
+			var len = arrChose.length;
+			for(var i = 0;i<len;i++)
+			{
+				oWrap.removeChild(oLi[arrChose.pop()]);
+			}
+				oBt[1].innerHTML = '选择';
+				oBt[0].style.display = 'none';
+				for(var i = 0;i<oLi.length;i++)
+				{
+					oLi[i].style.opacity = 1;
+					oLi[i].removeEventListener('touchend',chose,false);
+				}
+			pos();
+	}
+</script>
+</html>

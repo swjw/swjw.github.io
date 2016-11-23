@@ -1,0 +1,110 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+img {
+  vertical-align: top;
+}
+body,
+#page {
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: #000;
+  overflow: hidden;
+}
+.header {
+  width: 100%;
+  height: 2.15rem;
+  background: -webkit-linear-gradient(top, #292929, #1e1e1e);
+  color: #fff;
+  font-size: 0.6rem;
+  text-align: center;
+  line-height: 2.15rem;
+  position: absolute;
+  top: 0;
+}
+.header a {
+  color: #fff;
+  position: absolute;
+  width: 2.15rem;
+  height: 1.35rem;
+  border: 1px solid #000;
+  top: 0.25rem;
+  left: 13.15rem;
+  line-height: 1.35rem;
+  border-radius: 5px;
+}
+.header a:first-child {
+  left: 0.5rem;
+  display: none;
+}
+#wrap {
+  position: absolute;
+  top: 2.15rem;
+  width: 100%;
+  bottom: 3.2rem;
+  overflow: hidden;
+}
+.wrap {
+  position: absolute;
+  width: 100%;
+  box-sizing: border-box;
+}
+.wrap li {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 5.33rem;
+  height: 5.33rem;
+  border: 1px solid black;
+  box-sizing: border-box;
+  transition: 0.5s;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 3.2rem;
+  background: -webkit-linear-gradient(top, #1e1f21, #121212);
+}
+.footer a {
+  float: left;
+  width: 50%;
+  height: 100%;
+  font-size: 0.6rem;
+  color: #fff;
+  text-align: center;
+  line-height: 3.2rem;
+}
+#del {
+  position: absolute;
+  width: 5.3rem;
+  height: 3.15rem;
+  left: 5.4rem;
+  bottom: -3.15rem;
+}
+#del .top {
+  width: 100%;
+  height: 1.2rem;
+  background: url(../img/recycle2.png) no-repeat 0 0;
+  background-size: cover;
+  position: absolute;
+  top: 0.8rem;
+}
+#del .bottom {
+  width: 100%;
+  height: 2.4rem;
+  background: url(../img/recycle.png) no-repeat 0 0;
+  background-size: cover;
+  position: absolute;
+  bottom: 0px;
+}

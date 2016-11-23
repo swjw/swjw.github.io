@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<!-- <meta name="viewport" content="width = device-width,user-scalable = no,initial-scale = 1,minimum-scale = 1,maximum-scale = 1"> -->
+	<style>
+	*{margin:0px;padding: 0px;}
+	.picbox{width:240px;height: 240px;-webkit-perspective:800px;position: absolute;-webkit-transform-style:preserve-3d;}
+	.picbox div{width:24px;height:240px;position: absolute;left:24px;-webkit-perspective:800px;-webkit-transform-style:preserve-3d;background:url(./video/1.jpg) no-repeat;-webkit-transform-origin:left 160px;background-size:cover;}
+	.picbox>div{left:0px;}
+	.picbox div.show{-webkit-transform:rotateY(-60deg) rotateX(20deg);}
+	.picbox>div.show{-webkit-transform:rotateY(-60deg) translateX(240px) rotateX(20deg);}
+	</style>
+</head>
+<body>
+	<div class='picbox'>
+		<div>
+			<div style="background-position: -24px 0">
+				<div style="background-position: -48px 0">
+					<div style="background-position: -72px 0">
+						<div style="background-position: -96px 0">
+							<div style="background-position: -120px 0">
+								<div style="background-position: -144px 0">
+									<div style="background-position: -168px 0">
+										<div style="background-position: -196px 0">
+											<div style="background-position: -220px 0;"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	var picbox = document.getElementsByClassName('picbox')[0];
+	function open3D(obj){
+		var aDiv = obj.getElementsByTagName('div');
+		for(var i = 0;i<aDiv.length;i++)
+		{
+			aDiv[i].style.transition = '0.5s';
+			aDiv[i].className = 'show';
+		}
+	}
+	function close3D(obj){
+		var aDiv = obj.getElementsByTagName('div');
+		for(var i = 0;i<aDiv.length;i++)
+		{
+			aDiv[i].style.transition = '0.5s';
+			aDiv[i].className = '';
+		}
+	}
+	setTimeout(function(){
+		open3D(picbox);
+	},2000)
+	setTimeout(function(){
+		close3D(picbox);
+	},4000)
+</script>
+</html>
